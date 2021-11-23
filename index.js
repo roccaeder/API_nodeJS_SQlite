@@ -1,22 +1,18 @@
 const express = require('express');
 const sequelize = require('./database');
 const Car = require('./Cars');
+var cors = require('cors');
+
+// use it before all route definitions
+
 
 const app = express();
 
-sequelize.sync({ force: true }).then(() => console.log('start db'))
+app.use(cors());
+
+sequelize.sync().then(() => console.log('start db'))
 
 app.use(express.json());
-
-const carsData = [
-    {
-        "brand":"Toyota",
-        "model": "Corolla",
-        "year": 2020,
-        "color": "red",
-        "price": 9000
-    }
-];
 
 app.post('/cars', (req, res) => {
     Car.create(req.body).then(()=>{
