@@ -10,7 +10,7 @@ const app = express();
 
 app.use(cors());
 
-sequelize.sync().then(() => console.log('start db'))
+sequelize.sync({ force: true }).then(() => console.log('start db'))
 
 app.use(express.json());
 
