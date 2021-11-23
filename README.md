@@ -10,3 +10,9 @@ Execute `npm install`
 
 Then:\
 Execute `npm start`
+
+# API
+
+`http://localhost:3001/api`
+
+Also you can find insonmia file if you want test the API.
