@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('./database');
 
-class Cars extends Model {};
+class Car extends Model {};
 
-Cars.init({
+Car.init({
   brand: {
     type: DataTypes.STRING
   },
@@ -21,7 +21,7 @@ Cars.init({
   }
 }, {
   sequelize,
-  modelName: 'cars'
+  modelName: 'car'
 })
 
-module.exports = User;
+module.exports = Car;
