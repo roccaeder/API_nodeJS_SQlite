@@ -10,29 +10,29 @@ const app = express();
 
 app.use(cors());
 
-sequelize.sync({ force: true }).then(() => console.log('start db'))
+sequelize.sync().then(() => console.log('start db'))
 
 app.use(express.json());
 
-app.post('/cars', (req, res) => {
+app.post('/api/cars', (req, res) => {
     Car.create(req.body).then(()=>{
       res.send({success: "Car created"});
     })
 })
 
-app.get('/cars', (req, res) => {
+app.get('/api/cars', (req, res) => {
     Car.findAll().then((data)=>{
         res.send(data);
     })
 })
 
-app.get('/cars/:id', async (req, res) => {
+app.get('/api/cars/:id', async (req, res) => {
     const id = req.params.id;
     const car = await Car.findOne({where: {id: id}});
     res.send(car);
   })
   
-  app.put('/cars/:id', async (req, res) => {
+  app.put('/api/cars/:id', async (req, res) => {
     const id = req.params.id;
     const body = req.body;
     const car = await Car.findOne({where: {id: id}});
@@ -41,7 +41,7 @@ app.get('/cars/:id', async (req, res) => {
     res.send(car);
   })
   
-  app.delete('/cars/:id', async (req, res) => {
+  app.delete('/api/cars/:id', async (req, res) => {
     const id = req.params.id;
     await Car.destroy({where: {id: id}});
     res.send({success: "Car deleted"});
